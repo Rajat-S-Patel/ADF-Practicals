@@ -8,46 +8,6 @@ from .forms import PostForm, UserForm
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView 
 from django.urls import reverse_lazy
 
-def home(req):
-    if req.method == 'GET':
-        postform = PostForm()
-        posts = Post.objects.all()
-        return render(req,'home.html',{'postform':postform,'posts':posts})
-    elif req.method == 'POST':
-        postform = PostForm(req.POST)
-        if postform.is_valid():
-            post = postform.save(commit=False)
-            post.author = req.user
-            postform.save()
-            return render(req,'home.html',{'postform':postform})
-        else:
-            return render(req,'home.html',{'postform':postform})
-
-class userCreate(CreateView):
-    model = User
-    form_class=UserForm
-    template_name="usercreate.html"
-    context_object_name ="users"
-    success_url = reverse_lazy('user-list')
-
-class userDetail(DetailView): 
-    model = User
-    template_name="userdetail.html"
-    context_object_name ="users"
-
-class userUpdate(UpdateView): 
-    model = User
-    form_class=UserForm
-    template_name="userupdate.html"
-    context_object_name ="users"
-    success_url = reverse_lazy('user-list')
-
-class userDelete(DeleteView): 
-    model = User
-    template_name="userdelete.html"
-    context_object_name ="users"
-    success_url = reverse_lazy('user-list')
-
 class postCreate(CreateView):
     model = Post
     form_class = PostForm

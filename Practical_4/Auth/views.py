@@ -2,10 +2,10 @@ from django import http
 from django.shortcuts import redirect, render,HttpResponse
 from django.views.generic.edit import UpdateView
 
-from Auth.models import Profile
+from .models import CustomUser
 # from django.contrib.auth.forms import UserCreationForm
-from .forms import PersonalInfoForm
-from django.contrib.auth.models import User
+from .forms import UserForm
+from .models import CustomUser as User
 from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import authenticate, login, logout
@@ -33,6 +33,9 @@ def signup(req):
         email = req.POST['email']
         pass1 = req.POST['password1']
         pass2 = req.POST['password2']
+        first_name = req.POST['first_name']
+        last_name = req.POST['last_name']
+
 
         if User.objects.filter(username=username):
             messages.error(req,'Username already exists!!')
@@ -45,7 +48,7 @@ def signup(req):
             messages.error(req,"Password and Confirm password doesn't match ")
             return redirect('signup')
         
-        user = User.objects.create_user(username=username,email=email,password = pass1)
+        user = User.objects.create_user(username=username,email=email,first_name=first_name,last_name=last_name,password = pass1)
         user.is_active = False
         user.save()
 
@@ -82,7 +85,7 @@ def signin(req):
         
         if user is not None:
             login(req, user)
-            return redirect('personalinfo-update',pk=Profile.objects.get(user=user).id)
+            return redirect('home')
         else:
             messages.error(req, "Bad Credentials!!")
             return redirect('signin')
@@ -101,7 +104,7 @@ def activate(req,uidb64,token):
         user.save()
         login(req,user)
         messages.success(req, "Congratulations!!, Your Account has been activated!!")
-        return redirect('personalinfo',pk=user.id)
+        return redirect('user-update',pk=user.id)
     else:
         messages.error(req,'activation failed !!')
         return redirect('signup')
@@ -112,22 +115,9 @@ def signout(req):
     messages.success(req,'Logout sucessfully')
     return redirect('index')
 
-class PersonalInfo(CreateView):
-    model=Profile
-    form_class=PersonalInfoForm
-    template_name='personal_info.html'
-    context_object_name='user'
-    success_url=reverse_lazy('signin')
-
-    def get_initial(self):
-        return {'user':self.request.user}
-
 class PersonalInfoUpdate(UpdateView):
-    model=Profile
-    form_class=PersonalInfoForm
+    model=CustomUser
+    form_class=UserForm
     template_name='personal_info.html'
     context_object_name='user'
     success_url=reverse_lazy('signin')
-
-    def get_initial(self):
-        return {'user':self.request.user}
