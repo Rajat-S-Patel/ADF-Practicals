@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>Welcome</title>
+
+
+
+<div class="container card shadow">
+    <h2>Welcome to NewGen Social Media</h1>
+    <div class="row">
+        <div class="col p-2">
+            <h5>Already registered ? ...</h5>
+        </div>
+        <div class="col p-2">
+            <button class="btn btn-primary" onclick="window.location.href='signin'">SignIn</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col p-2">
+            <h5>Visiting first time ? ...</h5>
+        </div>
+        <div class="col p-2">
+            <button class="btn btn-secondary" onclick="window.location.href='signup'">Register Now</button>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

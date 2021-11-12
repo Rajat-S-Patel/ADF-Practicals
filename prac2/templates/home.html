@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <title>Home</title>
+    <h1 class="h1 text-center">Welcome to home</h1>
+    <div class="form-group">
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn btn-primary" type="submit">Logout</button>
+    </form>
+</div>
+{% endblock %}

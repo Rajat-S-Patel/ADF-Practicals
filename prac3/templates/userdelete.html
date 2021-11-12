@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container card shadow" style="padding: 10px; margin-top: 10px;">
+<form  method="POST">
+    {% csrf_token %}
+    <h4 class="h4 text-center">Are you sure you want to delete the information? </h4>
+    <div class="form-group text-center">
+        <input  type="submit" class="btn btn-danger text-center"  value="Confirm"/>
+    </div>
+</form>
+</div>
+{% endblock %}

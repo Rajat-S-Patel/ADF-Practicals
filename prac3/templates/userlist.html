@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<title> User List</title>
+<h2 class="h2 text-center">List of Users</h2>
+<div class="container card shadow" style="padding: 10px; margin-top: 10px;">
+<table class="table table-bordered table-hover ">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Gender</th>   
+            <th>Detail</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+<tbody>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.phone }}</td>
+        {% if user.gender > 2 %}
+            <td>Other</td>
+        {% elif user.gender > 1 %}
+            <td>Female</td>
+        {% else %}
+            <td>Male</td>
+        {%endif%}
+        <td>
+            <a  href="{% url 'user-detail' user.id  %}"><button class="btn btn-info">click</button></a>
+        </td>
+        <td>
+            <a  href="{% url 'user-update' user.id  %}"><button class="btn btn-warning">click</button></a>
+        </td>
+        <td>
+            <a  href="{% url 'user-delete' user.id  %}"><button class="btn btn-danger">click</button></a>
+        </td>
+    </tr>
+    
+    {% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}
