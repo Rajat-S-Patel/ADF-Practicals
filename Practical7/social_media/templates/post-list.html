@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>Home</title>
+<style>
+    .post-view{
+        color: darkslategrey;
+    }
+    .post-view:hover{
+        color:darkgray;
+    }
+</style>
+<div class="container"> 
+    {% for post in posts %}
+    <a href="{% url  'post-detail' post.id  %}" style="text-decoration: none; color: black;">
+        
+    <div class="card post-view" style="margin: 5px;">
+        
+            <div class="row">
+                <div class="col-10">
+                    <h3>{{post.title}}</h3>
+                </div>
+                <div class="col-2">
+                    <h6>{{post.date_of_creation}}</h6>
+                    <h6>{{post.author.username}}</h6>
+                </div>
+            </div>
+            <div class="row" style="max-height: 150px;overflow: hidden;">
+                <div class="col">
+                    <h6>{{post.content}}</h6>
+                </div>
+            </div>
+            
+        </div>
+        
+        </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

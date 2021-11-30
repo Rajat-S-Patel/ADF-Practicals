@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="card shadow">
+            <h3 class="text-center">create post</h3>
+            <form method = "post" action="post/" style="padding: 10px;">
+                {% csrf_token %}
+                {{form.as_p }}
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}

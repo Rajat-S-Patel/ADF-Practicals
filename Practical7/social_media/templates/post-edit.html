@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>Edit Post</title>
+{% if request.user.is_authenticated %}
+    <div class="container">
+        <div class="card shadow">
+            <h3 class="text-center">Edit post</h3>
+            <form method = "post" style="padding: 10px;">
+                {% csrf_token %}
+                {{form.as_p }}
+                <input type="submit" value="Save" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

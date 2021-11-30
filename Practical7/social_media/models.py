@@ -12,9 +12,5 @@ class Post(models.Model):
     author = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     
 
-    class Meta:
-        verbose_name='Social Media Post'
-        verbose_name_plural='Social Media Posts'
-
     def __str__(self) -> str:
         return self.title+"/"+self.author.username+"/"+self.date_of_creation.strftime("%d-%m-%Y")

@@ -1,0 +1,89 @@
+<MyGridLayout>
+    first_name:firstname
+    last_name:lastname
+    email:email
+    password:password
+    output_label:output_label
+
+    GridLayout:
+        cols:1
+        size: root.width,root.height
+        GridLayout:
+            cols:2
+            
+            Label:
+                text: 'First Name'
+                font_size: '25dp'
+
+            TextInput:
+                id:firstname
+                font_size: '25dp'
+                multiline: False
+            
+            Label:
+                font_size: '25dp'
+                text: 'Last Name'
+
+            TextInput:
+                id:lastname
+                font_size: '25dp'
+                multiline: False
+            
+            Label:
+                font_size: '25dp'
+                text: 'Email'
+
+            TextInput:
+                id:email
+                font_size: '25dp'
+                multiline: False
+            
+            Label:
+                font_size: '25dp'
+                text: 'Password'
+
+            TextInput:
+                id:password
+                font_size: '25dp'
+                password: True
+                multiline: False
+            
+
+        Button:
+            text: 'Submit'
+            font_size: '25dp'
+            size: root.width, 70
+            size_hint: None, None 
+            background_color:0, 149, 227, 0.8
+            on_press: root.submit()
+        
+        Button:
+            text:'Fetch'
+            font_size: '25dp'
+            size: root.width, 70
+            size_hint: None, None
+            background_color:0, 149, 227, 0.8
+            on_press: root.fetch_all()
+            
+        Label:
+            id:output_label
+            font_size: '25dp'
+            size: root.width, 40
+            multiline: True
+            text:'Output will be shown here'
+            size_hint: None, None
+        
+        Button:
+            text:'Clear'
+            font_size: '25dp'
+            size: root.width, 70
+            size_hint: None, None
+            background_color:0, 149, 227, 0.8
+            on_press: root.clear()
+        Label:
+            size: root.width, 40
+            size_hint: None, None
+            text:'Developed By Rajat Patel 18BCE191'
+            font_size: '20dp'
+
+        

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .row{
+        padding: 10px;
+    }
+</style>
+<div class="row">
+<h1 class="col-11 text-center">Welcome to NewGen Social Media </h1>
+<button class="col btn btn-danger" onclick="logout()">Logout</button>
+
+</div> 
+   <div class="row">
+       <div class="col-8">
+        {% include "post-list.html" %} 
+       </div>
+       <div class="col">
+           {% include "post-create.html" %}
+       </div>
+   </div>
+   <script>
+       let logout=()=>{
+           let url = "{% url 'signout' %}";
+           window.location=url;
+       }
+   </script>
+{% endblock %}

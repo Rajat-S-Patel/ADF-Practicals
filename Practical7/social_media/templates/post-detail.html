@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<title>{{object.title}}</title>
+    <div class="container" style="margin-top: 20px;">
+        <div class="card shadow" style="padding:10px">
+            <div class="row">
+                <div class="col-10">
+                    <h3>{{object.title | upper}}</h3>
+                </div>
+                
+                <div class="col-2">
+                    <h6>{{object.date_of_creation}}</h6>
+                    <h6>{{object.author.username}}</h6>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <p>{{object.content}}</p>
+                </div>
+            </div>
+            
+            <div class="row" style="padding:0px 5px 0px 5px;">
+                <button style="margin: 3px;" class="col btn btn-primary" onclick="gotoDelete()" > Delete</button>
+                <button style="margin: 3px;" class="col btn btn-info" onclick="gotoEdit()">Edit</button>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        let gotoDelete = ()=>{
+            let url = "{% url 'post-delete' object.id %}"
+            window.location=url;
+        }
+        let gotoEdit = () =>{
+            let url = "{% url 'post-update' object.id %}"
+            window.location=url;
+        }
+    </script>
+{% endblock%}
+

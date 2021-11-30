@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <h3> Forbidden !! </h3>
+        <h4>{{msg}}</h4>
+
+        <a href="{% url 'home' %}">Go Back</a>
+    </div>
+
+{% endblock %}
